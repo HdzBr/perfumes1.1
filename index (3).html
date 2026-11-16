@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090909" />
+  <title>NOIRÉ — The Art of Scent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#090909;--paper:#e9e3d8;--muted:#9b958b;--gold:#b99a6b;--line:rgba(233,227,216,.16);--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--paper);font-family:var(--sans);font-weight:300;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}
+    .grain{position:fixed;inset:0;z-index:20;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+    .topbar{position:absolute;z-index:30;top:0;left:0;width:100%;display:flex;align-items:center;justify-content:space-between;padding:28px 5.5vw;font-size:10px;letter-spacing:.2em;text-transform:uppercase}.brand{font-family:var(--serif);font-size:25px;letter-spacing:.18em}.nav{display:flex;gap:34px;color:#c5bfb5}.nav a{transition:color .3s}.nav a:hover{color:var(--gold)}.menu{display:none;background:none;border:0}
+    .hero{height:100svh;min-height:680px;position:relative;display:grid;place-items:center;overflow:hidden;background:#111}.hero-bg{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.2) 65%,rgba(0,0,0,.48)),linear-gradient(0deg,#090909 0%,transparent 30%),url('https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=2200&q=90') center 47%/cover;transform:scale(1.12)}.hero-content{position:relative;z-index:2;width:100%;padding:120px 10vw 90px;text-align:center}.eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}h1{font:400 clamp(64px,11vw,158px)/.88 var(--serif);letter-spacing:-.055em;margin:30px 0 25px}h1 em{font-weight:400;color:#c5a77b}.hero-copy{max-width:430px;margin:0 auto;color:#d0c9bf;font-size:13px;line-height:1.9;letter-spacing:.035em}.hero-actions{display:flex;justify-content:center;gap:14px;margin-top:38px}.btn{border:1px solid rgba(233,227,216,.55);padding:15px 24px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;background:transparent;transition:.35s;cursor:pointer}.btn:hover{background:var(--paper);color:#111;border-color:var(--paper)}.btn.gold{background:var(--gold);border-color:var(--gold);color:#111}.scroll-note{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#c6bfb5;display:flex;align-items:center;gap:14px}.scroll-note:after{content:"";height:38px;width:1px;background:var(--gold);position:absolute;top:22px;left:50%}
+    .intro{padding:170px 9vw 150px;display:grid;grid-template-columns:1fr 1.15fr;gap:10vw;align-items:center}.section-index{font-size:10px;letter-spacing:.22em;color:var(--gold)}.intro h2,.statement h2,.collection h2,.craft h2{font:400 clamp(42px,6vw,82px)/1.05 var(--serif);letter-spacing:-.035em;margin:25px 0}.intro h2 em,.statement h2 em,.collection h2 em,.craft h2 em{color:var(--gold);font-weight:400}.intro-text{max-width:420px;color:var(--muted);font-size:13px;line-height:2}.intro-visual{height:570px;position:relative;overflow:hidden}.intro-visual img{width:100%;height:120%;object-fit:cover;filter:brightness(.78);display:block}.image-caption{position:absolute;bottom:22px;left:24px;font-size:9px;letter-spacing:.22em;text-transform:uppercase}
+    .statement{padding:130px 12vw 160px;text-align:center;background:#111;position:relative;overflow:hidden}.statement:before{content:"";position:absolute;width:50vw;height:50vw;border:1px solid rgba(185,154,107,.12);border-radius:50%;left:25%;top:5%;box-shadow:0 0 0 6vw rgba(185,154,107,.025),0 0 0 12vw rgba(185,154,107,.02)}.statement h2{position:relative;max-width:950px;margin:25px auto;font-size:clamp(44px,7vw,96px)}.statement p{position:relative;color:var(--muted);font-size:12px;letter-spacing:.08em}
+    .collection{padding:150px 7vw 170px}.collection-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:65px}.collection-head p{max-width:230px;color:var(--muted);font-size:12px;line-height:1.8}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.product{position:relative}.product-image{height:480px;overflow:hidden;background:#171615;position:relative}.product-image img{width:100%;height:110%;object-fit:cover;display:block;filter:brightness(.82) saturate(.78);transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .6s}.product:hover img{transform:scale(1.06);filter:brightness(1) saturate(.9)}.product:nth-child(2){margin-top:75px}.product:nth-child(3){margin-top:150px}.product-meta{display:flex;justify-content:space-between;align-items:start;padding:20px 0;border-bottom:1px solid var(--line)}.product-name{font:25px var(--serif)}.product-type{display:block;color:var(--muted);font-size:9px;letter-spacing:.18em;text-transform:uppercase;margin-top:7px}.product-price{font-size:11px;color:var(--gold);letter-spacing:.1em}.product-link{display:inline-block;margin-top:18px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:7px}
+    .interlude{height:85vh;min-height:580px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}.interlude-bg{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.64)),url('https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=2200&q=90') center/cover;transform:scale(1.15)}.interlude-content{position:relative}.interlude h2{font:italic 400 clamp(50px,8vw,110px)/1 var(--serif);margin:20px 0}.interlude p{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#d0c9bf}
+    .craft{padding:160px 9vw;display:grid;grid-template-columns:1fr 1fr;gap:9vw;align-items:center}.craft-image{height:600px;overflow:hidden}.craft-image img{width:100%;height:115%;object-fit:cover;filter:brightness(.75)}.craft-copy p{max-width:400px;color:var(--muted);font-size:13px;line-height:2}.craft-list{margin-top:35px;border-top:1px solid var(--line)}.craft-list div{padding:17px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:10px;letter-spacing:.15em;text-transform:uppercase}.craft-list span:last-child{color:var(--gold)}
+    .closing{padding:130px 8vw 110px;text-align:center;background:#111}.closing h2{font:400 clamp(48px,8vw,104px)/1 var(--serif);margin:25px auto 35px;max-width:850px}.closing p{color:var(--muted);font-size:12px;letter-spacing:.06em}.footer{padding:34px 5.5vw;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);color:var(--muted);font-size:9px;letter-spacing:.16em;text-transform:uppercase}.footer .brand{color:var(--paper);font-size:20px}
+    .reveal{opacity:0;transform:translateY(55px)}.line-mask{overflow:hidden}.line-mask span{display:block;transform:translateY(110%)}
+    @media(max-width:800px){.topbar{padding:22px 6vw}.nav{display:none}.menu{display:block}.hero{min-height:650px}.hero-content{padding-inline:7vw}.intro,.craft{grid-template-columns:1fr;gap:45px;padding:100px 7vw}.intro-visual{height:440px}.statement{padding:100px 7vw}.collection{padding:100px 7vw}.collection-head{display:block}.collection-head p{margin-top:25px}.products{grid-template-columns:1fr;gap:48px}.product:nth-child(2),.product:nth-child(3){margin-top:0}.product-image{height:440px}.interlude{height:70vh;min-height:480px}.craft-image{height:430px}.closing{padding:100px 7vw}.footer{gap:20px;flex-wrap:wrap}.footer span:last-child{width:100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.line-mask span{opacity:1;transform:none!important}*{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="topbar">
+    <a class="brand" href="#">NOIRÉ</a>
+    <nav class="nav"><a href="#story">La maison</a><a href="#collection">Colección</a><a href="#craft">Nuestro arte</a></nav>
+    <button class="menu" aria-label="Menú">MENU</button>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="eyebrow hero-in">Parfums de caractère · Est. 2026</div>
+        <h1 class="hero-title">The art<br>of <em>being</em>.</h1>
+        <p class="hero-copy hero-in">Una fragancia no se lleva. Se convierte en parte de ti. Descubre el lenguaje invisible del lujo.</p>
+        <div class="hero-actions hero-in"><a class="btn gold" href="#collection">Explorar colección</a><a class="btn" href="#story">Descubrir NOIRÉ</a></div>
+      </div>
+      <div class="scroll-note">Desliza para descubrir</div>
+    </section>
+
+    <section class="intro" id="story">
+      <div class="intro-copy">
+        <div class="section-index reveal">01 / La maison</div>
+        <h2 class="reveal">El lujo está<br>en lo que <em>permanece.</em></h2>
+        <p class="intro-text reveal">NOIRÉ nace de una idea sencilla: los recuerdos más intensos no siempre tienen imagen. A veces, basta una nota en el aire para volver a un instante. Creamos perfumes para dejar una huella, nunca para seguir una tendencia.</p>
+      </div>
+      <div class="intro-visual"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1200&q=85" alt="Frasco de perfume de lujo sobre una superficie oscura"><div class="image-caption">Una presencia inolvidable</div></div>
+    </section>
+
+    <section class="statement">
+      <div class="section-index reveal">02 / Nuestra filosofía</div>
+      <h2 class="reveal">“No es lo que dices.<br>Es lo que <em>dejas.</em>”</h2>
+      <p class="reveal">SCENT IS THE SILENT SIGNATURE.</p>
+    </section>
+
+    <section class="collection" id="collection">
+      <div class="collection-head">
+        <div><div class="section-index reveal">03 / Selección exclusiva</div><h2 class="reveal">The <em>collection</em></h2></div>
+        <p class="reveal">Tres composiciones. Tres formas de expresar aquello que no necesita presentación.</p>
+      </div>
+      <div class="products">
+        <article class="product reveal">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1000&q=85" alt="Perfume elegante en tonos ámbar"></div>
+          <div class="product-meta"><div><span class="product-name">No. 01 — Ébène</span><span class="product-type">Amaderado · Profundo · Cálido</span></div><span class="product-price">01</span></div>
+          <a class="product-link" href="#contact">Descubrir esencia ↗</a>
+        </article>
+        <article class="product reveal">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1000&q=85" alt="Perfume de lujo con iluminación cálida"></div>
+          <div class="product-meta"><div><span class="product-name">No. 02 — Sillage</span><span class="product-type">Ambarado · Especiado · Magnético</span></div><span class="product-price">02</span></div>
+          <a class="product-link" href="#contact">Descubrir esencia ↗</a>
+        </article>
+        <article class="product reveal">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1000&q=85" alt="Perfume minimalista sobre fondo oscuro"></div>
+          <div class="product-meta"><div><span class="product-name">No. 03 — Minuit</span><span class="product-type">Fresco · Mineral · Elegante</span></div><span class="product-price">03</span></div>
+          <a class="product-link" href="#contact">Descubrir esencia ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="interlude">
+      <div class="interlude-bg"></div>
+      <div class="interlude-content"><div class="eyebrow reveal">The invisible becomes unforgettable</div><h2 class="reveal">Leave a trace.</h2><p class="reveal">Una firma que no necesita palabras.</p></div>
+    </section>
+
+    <section class="craft" id="craft">
+      <div class="craft-image"><img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&q=85" alt="Detalle de perfumería y materias primas"></div>
+      <div class="craft-copy">
+        <div class="section-index reveal">04 / El arte de crear</div>
+        <h2 class="reveal">Menos ruido.<br><em>Más esencia.</em></h2>
+        <p class="reveal">Cada composición se construye con intención: notas que se encuentran, contrastes que sorprenden y una evolución que revela algo nuevo con el paso de las horas.</p>
+        <div class="craft-list reveal"><div><span>01 — Materias selectas</span><span>Origen</span></div><div><span>02 — Composición precisa</span><span>Balance</span></div><div><span>03 — Identidad duradera</span><span>Memoria</span></div></div>
+      </div>
+    </section>
+
+    <section class="closing" id="contact">
+      <div class="section-index reveal">NOIRÉ · Parfums de caractère</div>
+      <h2 class="reveal">Find the scent<br>that <em>stays.</em></h2>
+      <p class="reveal">El comienzo de una nueva firma personal.</p>
+      <a class="btn gold reveal" href="mailto:bonjour@noire.example">Solicitar información</a>
+    </section>
+  </main>
+  <footer class="footer"><a class="brand" href="#">NOIRÉ</a><span>© 2026 NOIRÉ PARFUMS</span><span>Designed to be remembered</span></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    (() => {
+      if (!window.gsap || !window.ScrollTrigger) {
+        document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+        return;
+      }
+      gsap.registerPlugin(ScrollTrigger);
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) {
+        gsap.set('.reveal', {opacity:1, y:0});
+        return;
+      }
+      gsap.from('.hero-bg',{scale:1.25,duration:2.2,ease:'power3.out'});
+      gsap.from('.hero-in',{y:35,opacity:0,duration:1.1,stagger:.16,delay:.35,ease:'power3.out'});
+      gsap.from('.hero-title',{y:70,opacity:0,duration:1.4,delay:.45,ease:'power4.out'});
+      gsap.to('.hero-bg',{yPercent:18,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+      gsap.utils.toArray('.reveal').forEach((el) => {
+        gsap.fromTo(el,{y:55,opacity:0},{y:0,opacity:1,duration:1.05,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+      });
+      gsap.to('.intro-visual img',{yPercent:-13,ease:'none',scrollTrigger:{trigger:'.intro-visual',start:'top bottom',end:'bottom top',scrub:true}});
+      gsap.to('.interlude-bg',{yPercent:12,ease:'none',scrollTrigger:{trigger:'.interlude',start:'top bottom',end:'bottom top',scrub:true}});
+      gsap.to('.craft-image img',{yPercent:-12,ease:'none',scrollTrigger:{trigger:'.craft-image',start:'top bottom',end:'bottom top',scrub:true}});
+      gsap.utils.toArray('.product-image img').forEach(img => {
+        gsap.fromTo(img,{yPercent:-4,scale:1.08},{yPercent:4,scale:1,ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
+      });
+      window.addEventListener('load',()=>ScrollTrigger.refresh());
+    })();
+  </script>
+</body>
+</html>
